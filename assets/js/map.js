@@ -33,21 +33,9 @@ L.tileLayer(tiles, {
  *  Called (by main.js) on load and after form submission
  */
 function updateMap(data) {  
-  
   // 👉 add code inside this function (Chapter 10) ...
   
-  // remove all the markers
-  removeMarkers();
 
-  // loop through JSON
-  for (let i = 0; i < data.length; i++) {
-    // console.log(data[i]);
-    
-    // create marker and add to array
-    markerLayer[i] = createMarker(data[i]);
-  }
-  
-  // 👈
 }
 
 /**

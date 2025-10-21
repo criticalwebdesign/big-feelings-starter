@@ -5,13 +5,7 @@
 async function main() {
   // 👉 add code inside this function (Chapter 10) ...
 
-  let data = await fetchFeelings();
-  // console.log("data", data)
-
-  // update the map
-  await updateMap(data);
-
-  // 👈
+  
 }
 main();
 
