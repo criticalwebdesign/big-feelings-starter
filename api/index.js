@@ -20,13 +20,13 @@ app.use(express.json());
 import bodyParser from "body-parser";
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-	extended: true // support hierarchical data
+    extended: true // support hierarchical data
 }));
 
 import morganBody from 'morgan-body';
-morganBody(app, {logAllReqHeader:true, maxBodyLength:5000});
+morganBody(app, { logAllReqHeader: true, maxBodyLength: 5000 });
 
-app.use(function(error, req, res, next) {
+app.use(function (error, req, res, next) {
     console.log(req)
     next();
 });
