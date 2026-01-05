@@ -23,11 +23,11 @@ let data = [];
 async function main() {
     // 👉 add code inside this function (Chapter 10) ...
 
-    data = await fetchFeelings();
-    // console.log("data", data)
+    // data = await fetchFeelings();
+    // // console.log("data", data)
 
-    // update the map
-    await updateMap(data);
+    // // update the map
+    // await updateMap(data);
 
     // 👈
 }
@@ -78,29 +78,29 @@ function submitForm(e) {
     try {
         // 👉 add code inside this function (Chapter 10 wiki) ...
 
-        let data = getFormData();
-        console.log("data", data);
-        if (data.feeling == "" || data.lat == "" || data.lng == "") {
-            throw new Error("The feeling or location is missing");
-        }
+        // let data = getFormData();
+        // console.log("data", data);
+        // if (data.feeling == "" || data.lat == "" || data.lng == "") {
+        //     throw new Error("The feeling or location is missing");
+        // }
 
-        // create options object to send data, options
-        let options = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(data),
-        };
-        // console.log("submit", data);
-        fetch(baseurl + "/api/feeling", options)
-            .then((response) => response.json())
-            .then(async (json) => {
-                console.log("/feeling", json);
-                await updateMap(json);
-                // await displayData(json);
-                showSuccessMsg("Your feeling was added", data.color);
-            }).catch((err) => console.error("submitForm() error", err));
+        // // create options object to send data, options
+        // let options = {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify(data),
+        // };
+        // // console.log("submit", data);
+        // fetch(baseurl + "/api/feeling", options)
+        //     .then((response) => response.json())
+        //     .then(async (json) => {
+        //         console.log("/feeling", json);
+        //         await updateMap(json);
+        //         // await displayData(json);
+        //         showSuccessMsg("Your feeling was added", data.color);
+        //     }).catch((err) => console.error("submitForm() error", err));
 
         // 👈
     } catch (e) {

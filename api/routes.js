@@ -9,7 +9,7 @@ import express from 'express';
 var router = express.Router();
 
 // 👉 import database reference here (Chapter 10 wiki) ...
-import db from "./database/mongodb.js";
+// import db from "./database/mongodb.js";
 // 👈
 
 //////////////////////////////////////
@@ -34,18 +34,18 @@ router.get("/api", async (req, res) => {
 
 // 👉 add endpoint to retrieve data here (Chapter 10 wiki) ...
 
-// endpoint > get all the rows in the database
-router.get("/api/feelings", async function (req, res) {
-    if (!db) throw new Error('Database not found');
-    let result = [];
-    try {
-        result = await db.getAll();
-    } catch (err) {
-        result = [];
-        throw new Error('Error getting feelings: ', err);
-    }
-    res.json(result);
-});
+// // endpoint > get all the rows in the database
+// router.get("/api/feelings", async function (req, res) {
+//     if (!db) throw new Error('Database not found');
+//     let result = [];
+//     try {
+//         result = await db.getAll();
+//     } catch (err) {
+//         result = [];
+//         throw new Error('Error getting feelings: ', err);
+//     }
+//     res.json(result);
+// });
 
 // 👈
 
