@@ -4,17 +4,18 @@
 /////////////// INIT /////////////////
 //////////////////////////////////////
 
-// base url for self-hosted API
-let baseurl = "";
-
-// base url for remote API
-// baseurl = "https://big-feelings.vercel.app";
+// base url for 10.3
+let baseurl = "https://big-feelings.vercel.app";
 
 // 👉 add code inside this function (Chapter 10 wiki) ...
-// base url for localhost
+// base url for 10.4 (localhost testing)
 // baseurl = "http://localhost:3000";
 // 👈
 
+// 👉 add code inside this function (Chapter 10 wiki) ...
+// base url for 10.4 (publishing on Vercel)
+// baseurl = "";
+// 👈
 
 
 // declare data in global scope so to access from other functions
@@ -60,7 +61,7 @@ async function fetchData(url) {
     return await fetch(url)
         .then((response) => response.json())
         .then((json) => {
-            console.log("fetch() response", json);
+            // console.log("fetch() response", json);
             return json;
         })
         .catch((err) => {
