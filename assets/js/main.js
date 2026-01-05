@@ -7,14 +7,8 @@
 // base url for 10.3
 let baseurl = "https://big-feelings.vercel.app";
 
-// 👉 add code inside this function (Chapter 10 wiki) ...
-// base url for 10.4 (localhost testing)
-// baseurl = "http://localhost:3000";
-// 👈
+// 👉 add new base url to pull from your own database (Chapter 10 wiki) ...
 
-// 👉 add code inside this function (Chapter 10 wiki) ...
-// base url for 10.4 (publishing on Vercel)
-// baseurl = "";
 // 👈
 
 
@@ -24,11 +18,7 @@ let data = [];
 async function main() {
     // 👉 add code inside this function (Chapter 10) ...
 
-    // data = await fetchFeelings();
-    // // console.log("data", data)
 
-    // // update the map
-    // await updateMap(data);
 
     // 👈
 }
@@ -75,34 +65,10 @@ async function fetchData(url) {
  * Submit form handler
  */
 function submitForm(e) {
-    e.preventDefault();
     try {
         // 👉 add code inside this function (Chapter 10 wiki) ...
 
-        // let data = getFormData();
-        // console.log("data", data);
-        // if (data.feeling == "" || data.lat == "" || data.lng == "") {
-        //     throw new Error("The feeling or location is missing");
-        // }
-
-        // // create options object to send data, options
-        // let options = {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(data),
-        // };
-        // // console.log("submit", data);
-        // fetch(baseurl + "/api/feeling", options)
-        //     .then((response) => response.json())
-        //     .then(async (json) => {
-        //         console.log("/feeling", json);
-        //         await updateMap(json);
-        //         // await displayData(json);
-        //         showSuccessMsg("Your feeling was added", data.color);
-        //     }).catch((err) => console.error("submitForm() error", err));
-
+        
         // 👈
     } catch (e) {
         showSuccessMsg("Please add a feeling and select a location", "white");
