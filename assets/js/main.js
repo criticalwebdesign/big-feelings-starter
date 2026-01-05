@@ -1,5 +1,22 @@
 // main.js (client side, run by the browser) 
 
+//////////////////////////////////////
+/////////////// INIT /////////////////
+//////////////////////////////////////
+
+// base url for self-hosted API
+let baseurl = "";
+
+// base url for remote API
+// baseurl = "https://big-feelings.vercel.app";
+
+// 👉 add code inside this function (Chapter 10 wiki) ...
+// base url for localhost
+// baseurl = "http://localhost:3000";
+// 👈
+
+
+
 // declare data in global scope so to access from other functions
 let data = [];
 
@@ -16,63 +33,46 @@ async function main() {
 }
 main();
 
-// global placeholder for colors
-let colors;
 // create interface
 (async () => {
-    colors = await fetchColors();
     // update drop down
     updateOptions(colors);
 })();
-
 
 
 //////////////////////////////////////
 ///////////// FUNCTIONS //////////////
 //////////////////////////////////////
 
+// Fetch feelings data from the API server 
+async function fetchFeelings() {
+    return await fetchData(baseurl + "/api/feelings");
+}
+// a test file
+async function fetchTestFeelings() {
+    return await fetchData("/assets/data/test-feelings.json");
+}
+
 /**
- *  General fetch function
+ *  Fetch data from a URL
  */
 async function fetchData(url) {
-    return fetch(url)
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            }
-            // let the calling function decide what to do
-            throw new Error('No response received');
-        })
+    return await fetch(url)
+        .then((response) => response.json())
         .then((json) => {
-            // console.log("fetchData()", JSON.stringify(json));
+            console.log("fetch() response", json);
             return json;
         })
+        .catch((err) => {
+            throw new Error("Issue retrieving data from API");
+        });
 }
-async function fetchFeelings() {
-
-    let data = [];
-    try {
-        // get feelings data
-        data = await fetchData("/api/feelings");
-        // if no data throw an error
-        if (!data || data.length < 1)
-            throw new Error("Issue retrieving data from Mongo");
-    }
-    catch (err) {
-        console.error(`${err} - Problem retrieving feelings from database. Switching to test data...`);
-        // catch any errors and use test file instead
-        data = await fetchFeelingsJSON();
-    }
-    console.log("data", data)
-
-    return data;
-}
-async function fetchFeelingsJSON() { return await fetchData("/assets/data/test-feelings.json"); }
-async function fetchColors() { return await fetchData("./assets/data/colors.json"); }
 
 
 
-
+/**
+ * Submit form handler
+ */
 function submitForm(e) {
     e.preventDefault();
     try {
@@ -93,7 +93,7 @@ function submitForm(e) {
             body: JSON.stringify(data),
         };
         // console.log("submit", data);
-        fetch("/api/feeling", options)
+        fetch(baseurl + "/api/feeling", options)
             .then((response) => response.json())
             .then(async (json) => {
                 console.log("/feeling", json);
@@ -111,7 +111,7 @@ function submitForm(e) {
 
 
 /**
- *  Gets form data
+ *  Get form data
  */
 function getFormData() {
     // references
@@ -123,7 +123,7 @@ function getFormData() {
     let feeling = "";
     let color = "";
 
-    // if the checked option is in colors.json
+    // if the checked option is in colors
     if (id < colors.length) {
         feeling = colors[id].feeling;
         color = colors[id].color;
